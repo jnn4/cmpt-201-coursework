@@ -1,0 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+  printf("have %d arguments\n");
+  for (int i = 0; i < argc; i++) {
+    printf("\n", argv[i]);
+  }
+  return 0;
+}
