@@ -8,18 +8,18 @@ int main(int argc, char *argv[]) {
   ssize_t read;
 
   // char message[30];
-
+  
   printf("Please enter some text: ");
   // scanf("%s", argv[i]); // taking in user string inputs
   // printf("have %d arguments\n", argc);
 
   // get user input from argv?
   read = getline(&line, &len, stdin);
-  // printf("You entered: %zd:\n", fread);
+  //printf("You entered: %zd:\n", fread);
 
-  if (read != -1) {
-    printf("You entered: %zd:\n", read);
-  }
+  if(read != -1) {
+   printf("You entered: %zd:\n", read);
+  } 
 
   free(line);
   return 0;
