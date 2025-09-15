@@ -7,18 +7,18 @@ int main(int argc, char *argv[]) {
   // vars for getline()
   char *line = NULL;
   size_t len = 0;
-  // ssize_t read;
+  ssize_t read;
 
   // vars for strtok_r()
-  char *token;
-  // char *str1, *str2, *subtoken;
+  char *str1, *token;
+  // char *str2, *subtoken;
   char *saveptr1;
   // char *saveptr2;
 
   printf("Please enter some text: ");
 
   // get user input
-  getline(&line, &len, stdin);
+  read = getline(&line, &len, stdin);
 
   // testing to see if the getline() fcn worked...
   // if (read != -1) printf("Length of your input: %zd:\n", read);
@@ -36,8 +36,6 @@ int main(int argc, char *argv[]) {
     //}
   }
 
-  // some notes on how strtok_r() works:
-  //
   // first call to strtok_r()...
   // str should point to the string to be parsed
   // value of *saveptr is ignored

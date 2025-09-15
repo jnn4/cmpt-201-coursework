@@ -1,0 +1,50 @@
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+  // vars for getline()
+  char *line = NULL;
+  size_t len = 0;
+  ssize_t read;
+
+  // vars for strtok_r()
+  char *str1, *str2, *token, *subtoken;
+  char *saveptr1, *saveptr2;
+
+  printf("Please enter some text: ");
+
+  // get user input
+  read = getline(&line, &len, stdin);
+
+  if (read != -1) {
+    printf("Length of your input: %zd:\n", read);
+  }
+
+  printf("this is the word you entered: %s", line);
+
+  for(int j = 1; ; j++, str1 = NULL) {
+    token = strtok_r(str1, " ", &saveptr1);
+    if(token == NULL) break;
+    printf("%d: %s\n", j, token);
+
+    // second (subsequent) for loop?
+    for(str2 = token; ; str2 = NULL) {
+      subtoken = strtok_r(str2, " ", &saveptr2);
+      if(subtoken == NULL) break;
+      printf("\t --> %s\n", subtoken);
+    }
+  }
+  printf("Tokens:\n");
+
+  // first call to strtok_r()...
+  // str should point to the string to be parsed
+  // value of *saveptr is ignored
+  //
+  // in subsequent calls, str should be NULL
+  // saveptr should be unchanged since prev. call
+
+  free(line);
+  return 0;
+}
