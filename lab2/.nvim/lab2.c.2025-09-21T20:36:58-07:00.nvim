@@ -1,0 +1,40 @@
+#define _GNU_SOURCE
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+int main() {
+  printf("Enter programs to run.\n");
+
+  char *buff = NULL;
+  size_t size = 0;
+  bool programRunning = true;
+  int status;
+
+  while (programRunning) {
+    if (getline(&buff, &size, stdin) == -1)
+      break;
+
+    buff[strcspn(buff, "\n")] = '\0';
+    if (strcmp(buff,"joke")==0)
+      printf("hahahahhaha");
+    pid_t pid = fork();
+    if (pid < 0) {
+      perror("fork");
+      continue;
+    }
+
+    if (pid == 0) {
+      execl(buff, buff, (char *)NULL);
+      perror("Exec failure");
+      exit(1);
+    } else {
+      waitpid(pid, &status, 0);
+    }
+  }
+
+  free(buff);
+}

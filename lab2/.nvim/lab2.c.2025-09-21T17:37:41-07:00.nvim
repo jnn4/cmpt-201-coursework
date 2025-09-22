@@ -1,0 +1,13 @@
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+  printf("Enter programs to run.\n>");
+
+  char *line = NULL;
+  size_t len = 0;
+  getline(&line, &len, stdin);
+
+  free(line);
+}
